@@ -1,8 +1,8 @@
 # Release History
 
-## .Next
+## v0.19.0
 
-> Release Date: Unreleased
+> Release Date: 2024-04-09
 
 **Enhancement**:
 
@@ -21,8 +21,7 @@
   supported. [#844](https://github.com/vmware-samples/packer-examples-for-vsphere/pull/844)
 - Adds Windows Server 2025 Insiders Preview.
   [#834](https://github.com/vmware-samples/packer-examples-for-vsphere/pull/834)
-- Adds Ansible integration for Windows Server 20
-- 25, 2022, and 2019 images.
+- Adds Ansible integration for Windows Server 2025, 2022, and 2019 images.
   [#801](https://github.com/vmware-samples/packer-examples-for-vsphere/pull/801)
 - Adds Ansible integration for Windows 11 and 10 images.
   [#801](https://github.com/vmware-samples/packer-examples-for-vsphere/pull/801)
@@ -43,9 +42,10 @@
 
 - Updates `required_versions` for `packer` to `>= 1.10.0`.
   [#828](https://github.com/vmware-samples/packer-examples-for-vsphere/pull/828)
-- Updates `required_plugins` for `packer-plugin-vsphere` to `1.2.4`.
-  [#824](https://github.com/vmware-samples/packer-examples-for-vsphere/pull/824)
-  [#871](https://github.com/vmware-samples/packer-examples-for-vsphere/pull/871)
+- Updates `required_plugins` for `packer-plugin-vsphere` to `>= 1.2.7`.
+  [#824](https://github.com/vmware-samples/packer-examples-for-vsphere/pull/824),
+  [#871](https://github.com/vmware-samples/packer-examples-for-vsphere/pull/871),
+  [#873](https://github.com/vmware-samples/packer-examples-for-vsphere/pull/873)
 - Updates `required_plugins` for `ethanmdavidson/packer-plugin-git` to `>= 0.6.2`.
   [#868](https://github.com/vmware-samples/packer-examples-for-vsphere/pull/868)
 - Updates `required_versions` for `terraform` to `>= 1.7.1`.
