@@ -1,5 +1,76 @@
 # Release History
 
+## v0.20.0
+
+> Release Date: Not Released
+
+**Bug Fix**:
+
+- Updates Windows Desktop Enterprise Edition to support the default use of evaluation mode.
+  [#908](https://github.com/vmware-samples/packer-examples-for-vsphere/pull/908)
+
+    **Note**: Professional Edition does not support evaluation mode. Microsoft Evaluation Center only
+    provides support for Enterprise Edition. Please see the
+    [FAQ](https://vmware-samples.github.io/packer-examples-for-vsphere/getting-started/faq/) for
+    additional details.
+
+- Updates Windows Server 2025 Insiders Preview default values to allow for deployment.
+  [#907](https://github.com/vmware-samples/packer-examples-for-vsphere/pull/907)
+    - `vm_inst_os_eval = true` >> `false` (Requires key)
+    - `vm_inst_os_kms_key_standard` >> `vm_inst_os_key_standard`
+    - `vm_inst_os_kms_key_datacenter` >> `vm_inst_os_key_datacenter`
+
+**Enhancement**:
+
+- Adds a script (`./download.sh`) and a configuration (`project.json`) to assist in the download of
+  the guest operating systems.
+  [#874](https://github.com/vmware-samples/packer-examples-for-vsphere/pull/874),
+  [#877](https://github.com/vmware-samples/packer-examples-for-vsphere/pull/877)
+- Adds Ubuntu Server 24.04 LTS to the project.
+  [#891](https://github.com/vmware-samples/packer-examples-for-vsphere/pull/891)
+- Adds Fedora Server 40 Linux distribution to the project.
+  [#xxx](https://github.com/vmware-samples/packer-examples-for-vsphere/pull/xxx)
+- Adds option to enable cloud-init on Debian 12.
+  [#883](https://github.com/vmware-samples/packer-examples-for-vsphere/pull/883)
+- Adds option to enable cloud-init on Red Hat Enterprise Linux 9.
+  [#888](https://github.com/vmware-samples/packer-examples-for-vsphere/pull/888)
+- Adds option to enable cloud-init on Red Hat Enterprise Linux 8.
+  [#888](https://github.com/vmware-samples/packer-examples-for-vsphere/pull/888)
+- Adds option to enable cloud-init on Rocky Linux 9.
+  [#895](https://github.com/vmware-samples/packer-examples-for-vsphere/pull/895)
+- Adds option to enable cloud-init on Rocky Linux 8.
+  [#895](https://github.com/vmware-samples/packer-examples-for-vsphere/pull/895)
+- Adds option to enable cloud-init on CentOS Stream 8.
+  [#897](https://github.com/vmware-samples/packer-examples-for-vsphere/pull/897)
+- Adds option to enable cloud-init on CentOS Stream 9.
+  [#897](https://github.com/vmware-samples/packer-examples-for-vsphere/pull/897)
+- Adds option to enable cloud-init on AlmaLinux OS 8.
+  [#898](https://github.com/vmware-samples/packer-examples-for-vsphere/pull/898)
+- Adds option to enable cloud-init on AlmaLinux OS 9.
+  [#898](https://github.com/vmware-samples/packer-examples-for-vsphere/pull/898)
+- Adds option to enable cloud-init on Oracle Linux 8.
+  [#899](https://github.com/vmware-samples/packer-examples-for-vsphere/pull/899)
+- Adds option to enable cloud-init on Oracle Linux 9.
+  [#899](https://github.com/vmware-samples/packer-examples-for-vsphere/pull/899)
+- Adds option to enable cloud-init on VMware Photon OS 4.
+  [#900](https://github.com/vmware-samples/packer-examples-for-vsphere/pull/900)
+- Adds option to enable cloud-init on VMware Photon OS 5.
+  [#900](https://github.com/vmware-samples/packer-examples-for-vsphere/pull/900)
+
+**Chore**:
+
+- Removes Ubuntu Server 23.10 from the project; superseded by 24.04 LTS.
+  [#891](https://github.com/vmware-samples/packer-examples-for-vsphere/pull/891)
+
+## v0.19.1
+
+> Release Date: 2024-04-15
+
+**Bug Fix**:
+
+- Removes the PowerShell provisioner for Windows 11 and 10 as it's not required after the transition
+  to Ansible. [#878](https://github.com/vmware-samples/packer-examples-for-vsphere/pull/878)
+
 ## v0.19.0
 
 > Release Date: 2024-04-09
@@ -172,8 +243,8 @@
 - Removes Ubuntu 18.04 from the project.
   [#578](https://github.com/vmware-samples/packer-examples-for-vsphere/pull/578)
 
-    On 31 May 2023, Ubuntu 18.04 LTS reached the end of standard support. See
-    [Ubuntu Lifecycle](https://ubuntu.com/about/release-cycle) for more information.
+  On 31 May 2023, Ubuntu 18.04 LTS reached the end of standard support. See
+  [Ubuntu Lifecycle](https://ubuntu.com/about/release-cycle) for more information.
 
 - Updates Red Hat Enterprise Linux 9 to 9.2 release.
   [#576](https://github.com/vmware-samples/packer-examples-for-vsphere/pull/576),
@@ -695,7 +766,7 @@
 - Updates Microsoft Windows `autounattend.xml` files to use the attached VMware Tools `.iso` for
   PVSCSI driver.
 - Simplified and reduced the script files used by provisioners.
-- Patches the script for VNware Photon OS 4 due to an issue performing updates with `tdnf`.
+- Patches the script for VMware Photon OS 4 due to an issue performing updates with `tdnf`.
 - Patches the script for Ubuntu Server 20.04 LTS to remove cloud-init and remove all netplan
   configurations before GuestOS customization.
 - Removes support for VMware Photon OS 3 machine image builds.

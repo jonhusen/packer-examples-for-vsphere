@@ -3,7 +3,7 @@
 
 /*
     DESCRIPTION:
-    Ubuntu Server 23.10 build variables.
+    Fedora Server 40 input variables.
     Packer Plugin for VMware vSphere: 'vsphere-iso' builder.
 */
 
@@ -104,7 +104,7 @@ variable "vm_guest_os_timezone" {
 
 variable "vm_guest_os_family" {
   type        = string
-  description = "The guest operating system family. Used for naming."
+  description = "The guest operating system family. Used for naming and VMware Tools."
 }
 
 variable "vm_guest_os_name" {
@@ -364,7 +364,7 @@ variable "build_password" {
 
 variable "build_password_encrypted" {
   type        = string
-  description = "The encrypted password to login the guest operating system."
+  description = "The SHA-512 encrypted password to login to the guest operating system."
   sensitive   = true
 }
 
