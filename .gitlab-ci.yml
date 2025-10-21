@@ -1,5 +1,6 @@
-# Copyright 2023-2024 Broadcom. All rights reserved.
-# SPDX-License-Identifier: BSD-2
+# © Broadcom. All Rights Reserved.
+# The term “Broadcom” refers to Broadcom Inc. and/or its subsidiaries.
+# SPDX-License-Identifier: BSD-2-Clause
 
 ##############################################################################
 ##
@@ -7,12 +8,12 @@
 ##
 ## Do not modify this file directly, either:
 ##
-##     - modify the source build.yaml
-##     - modify the template build-ci.tmpl
+##     - Modify the source build-ci.yaml.
+##     - Modify the template build-ci.tmpl.
 ##
 ## then run the following command to re-create the .gitlab-ci.yml file:
 ##
-##     gomplate -c build.yaml -f build-ci.tmpl -o .gitlab-ci.yml
+##     gomplate -c build-ci.yaml -f build-ci.tmpl -o .gitlab-ci.yml
 ##
 ##############################################################################
 
@@ -89,15 +90,6 @@ Ubuntu-Server-22.04-LTS:
     variables:
         INPUT_PATH: "$SCRIPT_PATH/builds/linux/ubuntu/22-04-lts/"
         BUILD_VARS: "linux-ubuntu-22-04-lts.pkrvars.hcl"
-        EXTRA_VAR_FILES: "-var-file=$CONFIG_PATH/network.pkrvars.hcl -var-file=$CONFIG_PATH/linux-storage.pkrvars.hcl"
-
-##############################################################################
-
-Ubuntu-Server-20.04-LTS:
-    extends: .packer-build
-    variables:
-        INPUT_PATH: "$SCRIPT_PATH/builds/linux/ubuntu/20-04-lts/"
-        BUILD_VARS: "linux-ubuntu-20-04-lts.pkrvars.hcl"
         EXTRA_VAR_FILES: "-var-file=$CONFIG_PATH/network.pkrvars.hcl -var-file=$CONFIG_PATH/linux-storage.pkrvars.hcl"
 
 ##############################################################################
@@ -183,38 +175,29 @@ Oracle-Linux-8:
 
 ##############################################################################
 
+CentOS-Stream-10:
+    extends: .packer-build
+    variables:
+        INPUT_PATH: "$SCRIPT_PATH/builds/linux/centos/10/"
+        BUILD_VARS: "linux-centos-10.pkrvars.hcl"
+        EXTRA_VAR_FILES: "-var-file=$CONFIG_PATH/network.pkrvars.hcl -var-file=$CONFIG_PATH/linux-storage.pkrvars.hcl"
+
+##############################################################################
+
 CentOS-Stream-9:
     extends: .packer-build
     variables:
-        INPUT_PATH: "$SCRIPT_PATH/builds/linux/centos/9-stream/"
-        BUILD_VARS: "linux-centos-9-stream.pkrvars.hcl"
+        INPUT_PATH: "$SCRIPT_PATH/builds/linux/centos/9/"
+        BUILD_VARS: "linux-centos-9.pkrvars.hcl"
         EXTRA_VAR_FILES: "-var-file=$CONFIG_PATH/network.pkrvars.hcl -var-file=$CONFIG_PATH/linux-storage.pkrvars.hcl"
 
 ##############################################################################
 
-CentOS-Stream-8:
+Fedora-Server-42:
     extends: .packer-build
     variables:
-        INPUT_PATH: "$SCRIPT_PATH/builds/linux/centos/8-stream/"
-        BUILD_VARS: "linux-centos-8-stream.pkrvars.hcl"
-        EXTRA_VAR_FILES: "-var-file=$CONFIG_PATH/network.pkrvars.hcl -var-file=$CONFIG_PATH/linux-storage.pkrvars.hcl"
-
-##############################################################################
-
-CentOS-Linux-7:
-    extends: .packer-build
-    variables:
-        INPUT_PATH: "$SCRIPT_PATH/builds/linux/centos/7/"
-        BUILD_VARS: "linux-centos-7.pkrvars.hcl"
-        EXTRA_VAR_FILES: "-var-file=$CONFIG_PATH/network.pkrvars.hcl -var-file=$CONFIG_PATH/linux-storage.pkrvars.hcl"
-
-##############################################################################
-
-Fedora-Server-40:
-    extends: .packer-build
-    variables:
-        INPUT_PATH: "$SCRIPT_PATH/builds/linux/fedora/40/"
-        BUILD_VARS: "linux-fedora-40.pkrvars.hcl"
+        INPUT_PATH: "$SCRIPT_PATH/builds/linux/fedora/42/"
+        BUILD_VARS: "linux-fedora-42.pkrvars.hcl"
         EXTRA_VAR_FILES: "-var-file=$CONFIG_PATH/network.pkrvars.hcl -var-file=$CONFIG_PATH/linux-storage.pkrvars.hcl"
 
 ##############################################################################

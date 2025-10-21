@@ -1,4 +1,7 @@
 {
+  // Ansible settings
+  "ansible.python.interpreterPath": "/usr/local/bin/python3",
+
   // Editor settings
   "editor.bracketPairColorization.enabled": true,
   "editor.bracketPairColorization.independentColorPoolPerBracketType": true,
@@ -56,5 +59,8 @@
     "editor.formatOnType": true,
     "editor.trimAutoWhitespace": true,
     "editor.wordWrap": "off"
+  },
+  "[dockerfile]": {
+    "editor.defaultFormatter": "ms-azuretools.vscode-docker"
   }
 }

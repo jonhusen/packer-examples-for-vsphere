@@ -1,5 +1,6 @@
-# Copyright 2023-2024 Broadcom. All rights reserved.
-# SPDX-License-Identifier: BSD-2
+# © Broadcom. All Rights Reserved.
+# The term “Broadcom” refers to Broadcom Inc. and/or its subsidiaries.
+# SPDX-License-Identifier: BSD-2-Clause
 
 /*
     DESCRIPTION:
@@ -11,19 +12,19 @@
 //  The Packer configuration.
 
 packer {
-  required_version = ">= 1.10.0"
+  required_version = ">= 1.12.0"
   required_plugins {
     vsphere = {
       source  = "github.com/hashicorp/vsphere"
-      version = ">= 1.2.7"
+      version = ">= 1.4.2"
     }
     ansible = {
       source  = "github.com/hashicorp/ansible"
-      version = ">= 1.1.0"
+      version = ">= 1.1.2"
     }
     git = {
       source  = "github.com/ethanmdavidson/git"
-      version = ">= 0.6.2"
+      version = ">= 0.6.3"
     }
   }
 }
@@ -76,10 +77,24 @@ locals {
       additional_packages = join(" ", var.additional_packages)
     })
   }
-  data_source_command = var.common_data_source == "http" ? "inst.ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ks.cfg" : "inst.ks=cdrom:/ks.cfg"
-  vm_name             = "${var.vm_guest_os_family}-${var.vm_guest_os_name}-${var.vm_guest_os_version}-${local.build_version}"
-  bucket_name         = replace("${var.vm_guest_os_family}-${var.vm_guest_os_name}-${var.vm_guest_os_version}", ".", "")
-  bucket_description  = "${var.vm_guest_os_family} ${var.vm_guest_os_name} ${var.vm_guest_os_version}"
+  http_ks_command = "inst.ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ks.cfg"
+  http_ks_command_with_ip = format(
+    "inst.ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ks.cfg ip=%s::%s:%s:hostname:%s:none",
+    var.vm_ip_address != null ? var.vm_ip_address : "",
+    var.vm_ip_gateway != null ? var.vm_ip_gateway : "",
+    var.vm_ip_netmask != null ? var.vm_ip_netmask : "",
+    var.vm_network_device
+  )
+  data_source_command = var.common_data_source == "http" ? (
+    var.vm_ip_address != null && var.vm_ip_gateway != null && var.vm_ip_netmask != null ?
+    local.http_ks_command_with_ip :
+    local.http_ks_command
+    ) : (
+    var.common_data_source == "disk" ? "inst.ks=cdrom:/ks.cfg" : ""
+  )
+  vm_name            = "${var.vm_guest_os_family}-${var.vm_guest_os_name}-${var.vm_guest_os_version}-${local.build_version}"
+  bucket_name        = replace("${var.vm_guest_os_family}-${var.vm_guest_os_name}-${var.vm_guest_os_version}", ".", "")
+  bucket_description = "${var.vm_guest_os_family} ${var.vm_guest_os_name} ${var.vm_guest_os_version}"
 }
 
 //  BLOCK: source
@@ -184,8 +199,9 @@ source "vsphere-iso" "linux-rhel" {
   dynamic "export" {
     for_each = var.common_ovf_export_enabled ? [1] : []
     content {
-      name  = local.vm_name
-      force = var.common_ovf_export_overwrite
+      name        = local.vm_name
+      force       = var.common_ovf_export_overwrite
+      image_files = var.common_ovf_export_image_files
       options = [
         "extraconfig"
       ]

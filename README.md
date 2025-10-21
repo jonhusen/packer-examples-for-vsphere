@@ -1,16 +1,17 @@
 <!--
-Copyright 2023-2024 Broadcom. All rights reserved.
-SPDX-License-Identifier: BSD-2
+© Broadcom. All Rights Reserved.
+The term “Broadcom” refers to Broadcom Inc. and/or its subsidiaries.
+SPDX-License-Identifier: BSD-2-Clause
 -->
 
 <!-- markdownlint-disable first-line-h1 no-inline-html -->
 
-<img src="docs/assets/images/icon-color.svg" alt="VMware vSphere" width="100">
+<img src="docs/assets/images/icon-color.svg" alt="VMware vSphere" width="150">
 
 # Packer Examples for VMware vSphere
 
-![Last Commit](https://img.shields.io/github/last-commit/vmware-samples/packer-examples-for-vsphere?style=for-the-badge&logo=github)&nbsp;&nbsp;
-[![Documentation](https://img.shields.io/badge/Documentation-Read-blue?style=for-the-badge&logo=readthedocs&logoColor=white)](https://vmware-samples.github.io/packer-examples-for-vsphere)
+![Last Commit](https://img.shields.io/github/last-commit/vmware/packer-examples-for-vsphere?style=for-the-badge&logo=github)&nbsp;&nbsp;
+[![Documentation](https://img.shields.io/badge/Documentation-Read-blue?style=for-the-badge&logo=readthedocs&logoColor=white)](https://vmware.github.io/packer-examples-for-vsphere)
 
 This repository provides a collection of opinionated examples that demonstrate how you can use both [HashiCorp Packer][packer] and the [Packer Plugin for VMware vSphere][packer-plugin-vsphere] (`vsphere-iso` builder) to automate the creation of virtual machine images for VMware vSphere environments.
 
@@ -23,38 +24,35 @@ This project supports the following guest operating systems:
 ## Linux Distributions
 
 | Operating System             | Version   |
-| :---                         | :---      |
+|:-----------------------------|:----------|
 | VMware Photon OS             | 5         |
-| VMware Photon OS             | 4         |
+|                              | 4         |
 | Debian                       | 12        |
-| Debian                       | 11        |
+|                              | 11        |
 | Ubuntu Server                | 24.04 LTS |
-| Ubuntu Server                | 22.04 LTS |
-| Ubuntu Server                | 20.04 LTS |
+|                              | 22.04 LTS |
 | Red Hat Enterprise Linux     | 9         |
-| Red Hat Enterprise Linux     | 8         |
-| Red Hat Enterprise Linux     | 7         |
+|                              | 8         |
 | AlmaLinux OS                 | 9         |
-| AlmaLinux OS                 | 8         |
+|                              | 8         |
 | Rocky Linux                  | 9         |
-| Rocky Linux                  | 8         |
+|                              | 8         |
 | Oracle Linux                 | 9         |
-| Oracle Linux                 | 8         |
-| CentOS Stream                | 9         |
-| CentOS Stream                | 8         |
-| CentOS Linux                 | 7         |
-| Fedora Server                | 39        |
+|                              | 8         |
+| CentOS Stream                | 10        |
+|                              | 9         |
+| Fedora Server                | 42        |
 | SUSE Linux Enterprise Server | 15        |
 
 ## Microsoft Windows
 
 | Operating System         | Version | Editions                    | Experience       |
-| :---                     | :---    | :---                        | :---             |
+|:-------------------------| :---    | :---                        | :---             |
 | Microsoft Windows Server | 2025    | Standard and Datacenter     | Core and Desktop |
-| Microsoft Windows Server | 2022    | Standard and Datacenter     | Core and Desktop |
-| Microsoft Windows Server | 2019    | Standard and Datacenter     | Core and Desktop |
+|                          | 2022    | Standard and Datacenter     | Core and Desktop |
+|                          | 2019    | Standard and Datacenter     | Core and Desktop |
 | Microsoft Windows        | 11      | Professional and Enterprise | -                |
-| Microsoft Windows        | 10      | Professional and Enterprise | -                |
+|                          | 10      | Professional and Enterprise | -                |
 
 ## Documentation
 
@@ -68,7 +66,7 @@ For more detailed information, refer to the [contribution guidelines][contributi
 
 ## Support
 
-This project is **not supported** by VMware Support Services.
+This project is **not supported** by Broadcom Support.
 
 We welcome you to use the GitHub [issues][gh-issues] tracker to report bugs or suggest features and enhancements.
 
@@ -85,7 +83,9 @@ You can also start a discussion on the [discussions][gh-discussions] area to ask
 
 ## License
 
-Copyright 2023-2024 Broadcom. All rights reserved.
+© Broadcom. All Rights Reserved. The term “Broadcom” refers to Broadcom Inc. and/or its subsidiaries.
+
+Available under the Simplified BSD License.
 
 Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
 
@@ -97,9 +97,9 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
 
 [//]: Links
 [contributing]: CONTRIBUTING.md
-[documentation]: https://vmware-samples.github.io/packer-examples-for-vsphere
-[gh-issues]: https://github.com/vmware-samples/packer-examples-for-vsphere/issues
-[gh-discussions]: https://github.com/vmware-samples/packer-examples-for-vsphere/discussions
+[documentation]: https://vmware.github.io/packer-examples-for-vsphere
+[gh-issues]: https://github.com/vmware/packer-examples-for-vsphere/issues
+[gh-discussions]: https://github.com/vmware/packer-examples-for-vsphere/discussions
 [packer]: https://www.packer.io
 [packer-plugin-vsphere]: https://developer.hashicorp.com/packer/plugins/builders/vsphere/vsphere-iso
 [vmware-cla-dco]: https://cla.vmware.com/dco

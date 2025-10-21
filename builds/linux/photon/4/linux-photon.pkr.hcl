@@ -1,5 +1,6 @@
-# Copyright 2023-2024 Broadcom. All rights reserved.
-# SPDX-License-Identifier: BSD-2
+# © Broadcom. All Rights Reserved.
+# The term “Broadcom” refers to Broadcom Inc. and/or its subsidiaries.
+# SPDX-License-Identifier: BSD-2-Clause
 
 /*
     DESCRIPTION:
@@ -11,19 +12,19 @@
 //  The Packer configuration.
 
 packer {
-  required_version = ">= 1.10.0"
+  required_version = ">= 1.12.0"
   required_plugins {
     vsphere = {
       source  = "github.com/hashicorp/vsphere"
-      version = ">= 1.2.7"
+      version = ">= 1.4.2"
     }
     ansible = {
       source  = "github.com/hashicorp/ansible"
-      version = ">= 1.1.0"
+      version = ">= 1.1.2"
     }
     git = {
       source  = "github.com/ethanmdavidson/git"
-      version = ">= 0.6.2"
+      version = ">= 0.6.3"
     }
   }
 }
@@ -54,6 +55,7 @@ locals {
       build_username           = var.build_username
       build_password           = var.build_password
       build_password_encrypted = var.build_password_encrypted
+      vm_guest_os_cloudinit    = var.vm_guest_os_cloudinit
       network = templatefile("${abspath(path.root)}/data/network.pkrtpl.hcl", {
         device  = var.vm_network_device
         ip      = var.vm_ip_address
@@ -176,8 +178,9 @@ source "vsphere-iso" "linux-photon" {
   dynamic "export" {
     for_each = var.common_ovf_export_enabled ? [1] : []
     content {
-      name  = local.vm_name
-      force = var.common_ovf_export_overwrite
+      name        = local.vm_name
+      force       = var.common_ovf_export_overwrite
+      image_files = var.common_ovf_export_image_files
       options = [
         "extraconfig"
       ]
@@ -208,6 +211,7 @@ build {
       "--extra-vars", "build_key='${var.build_key}'",
       "--extra-vars", "ansible_username=${var.ansible_username}",
       "--extra-vars", "ansible_key='${var.ansible_key}'",
+      "--extra-vars", "enable_cloudinit=${var.vm_guest_os_cloudinit}",
     ]
   }
 

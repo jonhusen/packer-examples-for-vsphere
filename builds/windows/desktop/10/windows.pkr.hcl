@@ -1,5 +1,6 @@
-# Copyright 2023-2024 Broadcom. All rights reserved.
-# SPDX-License-Identifier: BSD-2
+# © Broadcom. All Rights Reserved.
+# The term “Broadcom” refers to Broadcom Inc. and/or its subsidiaries.
+# SPDX-License-Identifier: BSD-2-Clause
 
 /*
     DESCRIPTION:
@@ -11,19 +12,19 @@
 //  The Packer configuration.
 
 packer {
-  required_version = ">= 1.10.0"
+  required_version = ">= 1.12.0"
   required_plugins {
     vsphere = {
       source  = "github.com/hashicorp/vsphere"
-      version = ">= 1.2.7"
+      version = ">= 1.4.2"
     }
     git = {
       source  = "github.com/ethanmdavidson/git"
-      version = ">= 0.6.2"
+      version = ">= 0.6.3"
     }
     ansible = {
       source  = "github.com/hashicorp/ansible"
-      version = ">= 1.1.0"
+      version = ">= 1.1.2"
     }
   }
 }
@@ -112,11 +113,11 @@ source "vsphere-iso" "windows-desktop-pro" {
     "autounattend.xml" = templatefile("${abspath(path.root)}/data/autounattend.pkrtpl.hcl", {
       build_username       = var.build_username
       build_password       = var.build_password
-      vm_inst_os_eval      = var.vm_inst_os_eval        // Does not support evaluation.
+      vm_inst_os_eval      = var.vm_inst_os_eval // Does not support evaluation.
       vm_inst_os_language  = var.vm_inst_os_language
       vm_inst_os_keyboard  = var.vm_inst_os_keyboard
       vm_inst_os_image     = var.vm_inst_os_image_pro
-      vm_inst_os_key       = var.vm_inst_os_key_pro     // Does not support evaluation.
+      vm_inst_os_key       = var.vm_inst_os_key_pro // Does not support evaluation.
       vm_guest_os_language = var.vm_guest_os_language
       vm_guest_os_keyboard = var.vm_guest_os_keyboard
       vm_guest_os_timezone = var.vm_guest_os_timezone
@@ -158,8 +159,9 @@ source "vsphere-iso" "windows-desktop-pro" {
   dynamic "export" {
     for_each = var.common_ovf_export_enabled ? [1] : []
     content {
-      name  = local.vm_name_pro
-      force = var.common_ovf_export_overwrite
+      name        = local.vm_name_pro
+      force       = var.common_ovf_export_overwrite
+      image_files = var.common_ovf_export_image_files
       options = [
         "extraconfig"
       ]
@@ -267,8 +269,9 @@ source "vsphere-iso" "windows-desktop-ent" {
   dynamic "export" {
     for_each = var.common_ovf_export_enabled ? [1] : []
     content {
-      name  = local.vm_name_ent
-      force = var.common_ovf_export_overwrite
+      name        = local.vm_name_ent
+      force       = var.common_ovf_export_overwrite
+      image_files = var.common_ovf_export_image_files
       options = [
         "extraconfig"
       ]
